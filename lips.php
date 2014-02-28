@@ -3,7 +3,6 @@
 define( 'NEW_LINE', "\r\n" );
 
 function attr ( &$attr, &$text ) {
-	global $indent_counter;
 
 	$new_attr_value = '';
 
