@@ -11,6 +11,6 @@ class lips_element {
 	}
 
 	public function appendChild ( $el = null ) {
-		
+
 	}
 }
