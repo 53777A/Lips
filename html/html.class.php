@@ -5,6 +5,7 @@ class html extends lips {
 	public function __construct () {
 
 		require_once __DIR__ . '/html_elements.class.php';
+		require_once __DIR__ . '/html_selector.class.php';
 		require_once __DIR__ . '/html_exception.class.php';
 		require_once __DIR__ . '/html_errors.class.php';
 	}

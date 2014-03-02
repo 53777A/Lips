@@ -82,3 +82,13 @@ class Lips {
 		// $this->nodes[] = $node;
 	}
 }
+
+$a = new Lips( 'html' );
+// $a->setVersion( 5.1, html::versions );
+$a->create( html::document() );
+// $a = html::document( html::html() );
+// $a->appendChild();
+$a->setVersion(1, array(1, 2));
+// $a->nodes[0]->test_doc();
+
+var_dump( $a );
