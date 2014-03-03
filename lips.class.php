@@ -42,16 +42,6 @@ class Lips {
 		
 	}
 
-	public static function loopElements ( &$el, $number_of_args, $args ) {
-		
-		if ( 0 < $number_of_args ) {
-
-			foreach ( $args as $arg ) {
-				$el->appendChild( $arg );
-			}
-		}
-	}
-
 	public function setType ( $type ) {
 
 		if ( empty($type) ) {
@@ -79,16 +69,7 @@ class Lips {
 	}
 
 	public function create ( $node ) {
-		// $this->nodes[] = $node;
+		$this->nodes[$node->nodeName()] = $node;
 	}
 }
 
-$a = new Lips( 'html' );
-// $a->setVersion( 5.1, html::versions );
-$a->create( html::document() );
-// $a = html::document( html::html() );
-// $a->appendChild();
-$a->setVersion(1, array(1, 2));
-// $a->nodes[0]->test_doc();
-
-var_dump( $a );

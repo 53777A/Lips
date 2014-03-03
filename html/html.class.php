@@ -1,6 +1,6 @@
 <?php
 
-class html extends lips {
+class html {
 
 	public function __construct () {
 
@@ -10,11 +10,21 @@ class html extends lips {
 		require_once __DIR__ . '/html_errors.class.php';
 	}
 
+	public static function loopElements ( &$el, $number_of_args, $args ) {
+		
+		if ( 0 < $number_of_args ) {
+
+			foreach ( $args as $arg ) {
+				$el->appendChild( $arg );
+			}
+		}
+	}
+
 	public static function document () {
 		
 		$el = new lips_html_document();
 
-		parent::loopElements( $el, func_num_args(), func_get_args() );
+		static::loopElements( $el, func_num_args(), func_get_args() );
 		
 		return $el;
 	}
@@ -23,7 +33,7 @@ class html extends lips {
 		
 		$el = new lips_html_html();
 
-		parent::loopElements( $el, func_num_args(), func_get_args() );
+		static::loopElements( $el, func_num_args(), func_get_args() );
 		
 		return $el;
 	}
