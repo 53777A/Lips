@@ -29,7 +29,7 @@ class Lips {
 			case 'html':
 				require_once __DIR__ . '/html/html.class.php';
 				$this->class = new html();
-				// return $this->class;
+				return $this->class;
 				break;
 			
 			default:
@@ -70,6 +70,17 @@ class Lips {
 
 	public function create ( $node ) {
 		$this->nodes[$node->nodeName()] = $node;
+	}
+
+	public function select ( $selector ) {
+
+		if ( empty($selector) ) {
+
+		}
+
+		$selectorObject = new LipsHTMLSelector( $selector, $this->nodes );
+
+		// return $selectorObject->getNodes();
 	}
 }
 

@@ -8,7 +8,7 @@ class lips_element {
 
 	private $children = array();
 
-	public function __construct ( $parent ) {
+	public function __construct ( $parent = null ) {
 
 		if ( empty($parent) ) {
 
@@ -16,14 +16,22 @@ class lips_element {
 
 		// $parent = (string) $parent;
 
-		$this->parent = $parent;
+		// $this->parent = $parent;
 	}
 
 	public function getParent () {
 		return $this->parent;
 	}
 
-	public function appendChild ( $el = null ) {
+	public function getChildren () {
+		return $this->children;
+	}
 
+	public function getChild ( $index ) {
+		return $this->children[$index];
+	}
+
+	public function appendChild ( $el = null ) {
+		$this->children[] = $el;
 	}
 }
