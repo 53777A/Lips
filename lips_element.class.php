@@ -14,9 +14,13 @@ class lips_element {
 
 		}
 
-		$parent = (string) $parent;
+		// $parent = (string) $parent;
 
 		$this->parent = $parent;
+	}
+
+	public function getParent () {
+		return $this->parent;
 	}
 
 	public function appendChild ( $el = null ) {
