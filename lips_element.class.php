@@ -4,6 +4,8 @@ class lips_element {
 
 	private $id = null;
 
+	private $class = null;
+
 	private $parent = null;
 
 	private $children = array();

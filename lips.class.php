@@ -80,7 +80,7 @@ class Lips {
 
 		$selectorObject = new LipsHTMLSelector( $selector, $this->nodes );
 
-		// return $selectorObject->getNodes();
+		return $selectorObject->getNodes();
 	}
 }
 
