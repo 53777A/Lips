@@ -5,7 +5,6 @@ class html {
 	public function __construct () {
 
 		require_once __DIR__ . '/html_elements.class.php';
-		// require_once __DIR__ . '/html_selector.class.php';
 		require_once __DIR__ . '/html_exception.class.php';
 		require_once __DIR__ . '/html_errors.class.php';
 	}
@@ -15,8 +14,10 @@ class html {
 		if ( 0 < $number_of_args ) {
 
 			foreach ( $args as $arg ) { 
-				if ( $arg instanceof lips_element ) {
+				if ( $arg instanceof LipsElement ) {
 					$el->appendChild( $arg );
+				} else {
+					$el->setContent( $arg );
 				}
 			}
 		}
@@ -24,7 +25,7 @@ class html {
 
 	public static function document () {
 
-		$el = new lips_html_document();
+		$el = new LipsHTMLTagDocument();
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 
@@ -33,7 +34,7 @@ class html {
 
 	public static function html () {
 
-		$el = new lips_html_html();
+		$el = new LipsHTMLTagHTML();
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
@@ -42,7 +43,7 @@ class html {
 
 	public static function head () {
 
-		$el = new lips_html_head();
+		$el = new LipsHTMLTagHead();
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
@@ -51,7 +52,7 @@ class html {
 
 	public static function body () {
 
-		$el = new lips_html_body();
+		$el = new LipsHTMLTagBody();
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
@@ -60,7 +61,7 @@ class html {
 
 	public static function title () {
 
-		$el = new lips_html_title();
+		$el = new LipsHTMLTagTitle();
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
