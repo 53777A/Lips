@@ -16,11 +16,17 @@ class html {
 			foreach ( $args as $arg ) { 
 				if ( $arg instanceof LipsElement ) {
 					$el->appendChild( $arg );
+				} else if ( $arg instanceof LipsElementAttributes ) {
+					$el->setAttributes( $arg );
 				} else {
 					$el->setContent( $arg );
 				}
 			}
 		}
+	}
+
+	public static function attr ( $attributes ) {
+		return new LipsElementAttributes ( $attributes );
 	}
 
 	public static function document () {
@@ -62,6 +68,15 @@ class html {
 	public static function title () {
 
 		$el = new LipsHTMLTagTitle();
+
+		static::loopElements( $el, func_num_args(), func_get_args() );
+		
+		return $el;
+	}
+
+	public static function p () {
+
+		$el = new LipsHTMLTagP();
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
