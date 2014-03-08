@@ -5,7 +5,7 @@ class html {
 	public function __construct () {
 
 		require_once __DIR__ . '/html_elements.class.php';
-		require_once __DIR__ . '/html_selector.class.php';
+		// require_once __DIR__ . '/html_selector.class.php';
 		require_once __DIR__ . '/html_exception.class.php';
 		require_once __DIR__ . '/html_errors.class.php';
 	}
@@ -15,7 +15,9 @@ class html {
 		if ( 0 < $number_of_args ) {
 
 			foreach ( $args as $arg ) { 
-				$el->appendChild( $arg );
+				if ( $arg instanceof lips_element ) {
+					$el->appendChild( $arg );
+				}
 			}
 		}
 	}
