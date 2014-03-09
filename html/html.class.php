@@ -2,11 +2,42 @@
 
 class html {
 
-	public function __construct () {
+	private static $version = null;
+
+	public function __construct ( $version ) {
 
 		require_once __DIR__ . '/html_elements.class.php';
 		require_once __DIR__ . '/html_exception.class.php';
 		require_once __DIR__ . '/html_errors.class.php';
+
+		self::setVersion( $version );
+	}
+
+	public static function getVersion () {
+		return self::$version;
+	}
+
+	private static function setVersion ( $version ) {
+
+		if ( empty($version) ) {
+
+		}
+
+		$version = (float) $version;
+
+		self::$version = $version;
+	}
+
+	public static function getVersions () {
+
+		$versions = array(
+			4,
+			4.01,
+			5,
+			5.1
+		);
+
+		return $versions;
 	}
 
 	public static function loopElements ( &$el, $number_of_args, $args ) {
@@ -31,7 +62,7 @@ class html {
 
 	public static function document () {
 
-		$el = new LipsHTMLTagDocument();
+		$el = new LipsHTMLTagDocument( self::$version );
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 
@@ -40,7 +71,7 @@ class html {
 
 	public static function html () {
 
-		$el = new LipsHTMLTagHTML();
+		$el = new LipsHTMLTagHTML( self::$version );
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
@@ -49,7 +80,7 @@ class html {
 
 	public static function head () {
 
-		$el = new LipsHTMLTagHead();
+		$el = new LipsHTMLTagHead( self::$version );
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
@@ -58,7 +89,7 @@ class html {
 
 	public static function body () {
 
-		$el = new LipsHTMLTagBody();
+		$el = new LipsHTMLTagBody( self::$version );
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
@@ -67,7 +98,7 @@ class html {
 
 	public static function title () {
 
-		$el = new LipsHTMLTagTitle();
+		$el = new LipsHTMLTagTitle( self::$version );
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		
@@ -76,7 +107,7 @@ class html {
 
 	public static function p () {
 
-		$el = new LipsHTMLTagP();
+		$el = new LipsHTMLTagP( self::$version );
 
 		static::loopElements( $el, func_num_args(), func_get_args() );
 		

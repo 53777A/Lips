@@ -31,84 +31,103 @@ class LipsElementAttributes {
 }
 
 class LipsHTMLTagDocument extends LipsElement {
+
 	public function nodeName () {
 		return 'document';
 	}
+
 	public function openingTag () {
+
 		$attributes = $this->getAttributes();
 
 		return '<doc type ' . $attributes . '>';
 	}
+
 	public function closingTag () {
 		return '</doc type>';
 	}
 }
 
 class LipsHTMLTagHTML extends LipsElement {
+
 	public function nodeName () {
 		return 'html';
 	}
+
 	public function openingTag () {
 		$attributes = $this->getAttributes();
 
 		return '<html ' . $attributes . '>';
 	}
+
 	public function closingTag () {
 		return '</html>';
 	}
 }
 
 class LipsHTMLTagHead extends LipsElement {
+
 	public function nodeName () {
 		return 'head';
 	}
+
 	public function openingTag () {
 		$attributes = $this->getAttributes();
 
 		return '<head ' . $attributes . '>';
 	}
+
 	public function closingTag () {
 		return '</head>';
 	}
 }
 
 class LipsHTMLTagBody extends LipsElement {
+
 	public function nodeName () {
 		return 'body';
 	}
+
 	public function openingTag () {
 		$attributes = $this->getAttributes();
 
 		return '<body ' . $attributes . '>';
 	}
+
 	public function closingTag () {
 		return '</body>';
 	}
 }
 
 class LipsHTMLTagTitle extends LipsElement {
+
 	public function nodeName () {
 		return 'title';
 	}
+
 	public function openingTag () {
 		$attributes = $this->getAttributes();
 
 		return '<title ' . $attributes . '>';
 	}
+
 	public function closingTag () {
 		return '</title>';
 	}
 }
 
 class LipsHTMLTagP extends LipsElement {
+
 	public function nodeName () {
 		return 'p';
 	}
+
 	public function openingTag () {
 		$attributes = $this->getAttributes();
 		
 		return '<p ' . $attributes . '>';
 	}
+	
 	public function closingTag () {
 		return '</p>';
 	}

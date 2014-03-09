@@ -2,44 +2,45 @@
 
 class Lips {
 
-	private $nodes 		= null;
-	private $class 		= null;
-	private $type 		= null;
-	private $version 	= 0;
+	private $nodes 				= null;
+	private $class 				= null;
+	private $type 				= null;
+	private $version 			= null;
+	private $supported_versions = array();
+	private $doctype 			= null;
 
-	public function __construct ( $type, $version = 0 ) {
+	public function __construct ( $type, $version ) {
 
 		if ( empty($type) ) {
 			
 		}
 
-		$type 		= (string) $type;
-		$version 	= (int) $version;
-
 		$this->setType( $type );
-
-		if ( !empty($version) ) {
-			$this->setVersion( $version );
-		}
 
 		require_once __DIR__ . '/lips_element.class.php';
 
-		switch ( $type ) {
+		switch ( $this->type ) {
 
 			case 'html':
+
 				require_once __DIR__ . '/html/html.class.php';
-				$this->class = new html();
-				return $this->class;
-				break;
+
+				$this->supported_versions = html::getVersions();
+
+				if ( !empty($version) ) {
+					$this->setVersion( $version );
+				}
+
+				$this->class = new html( $this->version );
 			
-			default:
-				
 				break;
 		}
 	}
 
 	public function render () {
-		
+
+		$node = current( $this->nodes );
+		$node->render();
 	}
 
 	public function setType ( $type ) {
@@ -47,40 +48,44 @@ class Lips {
 		if ( empty($type) ) {
 
 		}
+
+		$type = (string) $type;
+
+		$this->type = $type;
 	}
 
-	public function setVersion ( $version, $supported_versions ) {
+	private function setVersion ( $version ) {
 
 		if ( empty($version) ) {
 
 		}
 
-		if ( !is_array($supported_versions) ) {
+		if ( empty($this->supported_versions) || !is_array($this->supported_versions) ) {
 			
 		}
 
-		$version = (string) $version;
+		$version = (float) $version;
 
-		if ( in_array($version, $supported_versions) ) {
+		if ( in_array($version, $this->supported_versions) ) {
 			$this->version = $version;
 		} else {
 
 		}
 	}
 
-	public function create ( $node ) {
-		$this->nodes[$node->nodeName()] = $node;
+	public function getVersion () {
+		return $this->version;
 	}
 
-	public function select ( $selector ) {
+	public function setDoctype ( $doctype ) {
 
-		if ( empty($selector) ) {
+		if ( empty($doctype) ) {
 
 		}
+	}
 
-		$selectorObject = new LipsHTMLSelector( $selector, $this->nodes );
-
-		return $selectorObject->getNodes();
+	public function create ( $node ) {
+		$this->nodes[$node->nodeName()] = $node;
 	}
 }
 

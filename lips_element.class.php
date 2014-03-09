@@ -1,6 +1,6 @@
 <?php
 
-class lips_element {
+class LipsElement {
 
 	private $id = null;
 
@@ -8,17 +8,34 @@ class lips_element {
 
 	private $parent = null;
 
+	private $content = null;
+
 	private $children = array();
 
-	public function __construct ( $parent = null ) {
+	private $attributes = null;
 
-		if ( empty($parent) ) {
+	private $version = null;
+
+	public function __construct ( $version ) {
+
+		$this->setVersion( $version );
+	}
+
+	public function getAttributes () {
+		return $this->attributes;
+	}
+
+	public function setAttributes ( $attributes = null ) {
+
+		if ( empty($attributes) ) {
 
 		}
 
-		// $parent = (string) $parent;
+		if ( false === ($attributes instanceof LipsElementAttributes) ) {
 
-		// $this->parent = $parent;
+		}
+
+		$this->attributes = (string) $attributes->getAttributes();
 	}
 
 	public function getParent () {
@@ -35,5 +52,43 @@ class lips_element {
 
 	public function appendChild ( $el = null ) {
 		$this->children[] = $el;
+	}
+
+	public function setContent ( $content = null ) { 
+		$this->content = (string) $content;
+	}
+
+	public function getContent () {
+		return $this->content;
+	}
+
+	public function setVersion ( $version ) {
+
+		$version = (float) $version;
+
+		if ( empty($version) || 0 >= $version ) {
+
+		}
+
+		$this->version = $version;
+	}
+
+	public function getVersion () {
+		return $this->version;
+	}
+
+	public function render () {
+
+		echo $this->openingTag();
+
+		if ( !empty($this->content) ) {
+			echo $this->content;
+		} else if ( !empty($this->children) ) {
+			foreach ( $this->children as $child ) {
+				$child->render();
+			}
+		}
+
+		echo $this->closingTag();
 	}
 }
