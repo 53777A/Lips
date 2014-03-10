@@ -17,7 +17,6 @@ class LipsElement {
 	private $version = null;
 
 	public function __construct ( $version ) {
-
 		$this->setVersion( $version );
 	}
 
